@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Conexión de canales</h1>
+<h1>{{hotel.nombre}}</h1>
+{% if hotel.activo %}
+    <p>Estado del hotel: Activo</p>
+{% else %}
+    <p>Estado del hotel: Inactivo</p>
+{% endif %}
+<p>Account Manager: {{hotel.id_usuario}}</p>
+<form method="POST">
+    {% csrf_token %}
+    {{form}}
+    {{form2}}
+    <button>Guardar</button>
+
+</form>
+
+
+<strong>
+{{error}}
+</strong>
+
+
+{% endblock %}
+
+

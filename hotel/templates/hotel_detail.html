@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Nombre del hotel: {{hotel.nombre}}</h1>
+
+<strong>
+{{error}}
+</strong>
+<form method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button>
+        Guardar cambios
+    </button>
+</form>
+<br>
+<p>----------------------------------------------------------------------------------------- Conexión -----------------------------------------------------------------------------------</p>
+<br>
+
+<a href="{% url 'conexion' hotel.id %}">
+<button>Conectar</button>
+</a>
+{% endblock %}

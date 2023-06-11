@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Lista de Hoteles</h1>
+<br>
+<ul>
+    {% for i in hotel_list %}
+    <li>
+            <h2>{{i.nombre}}</h2>
+            {% if i.activo %}
+            <p>Estado: Activo</p>
+            {% else %}
+            <p>Estado: Inactivo</p>
+            {% endif %}
+            <p>Categoría: {{i.categoria}}</p>
+            <p>Fecha de registro: {{i.fecha_alta}}</p>
+            <p>Account Manager: {{i.id_usuario}}</p>
+            <a href="{% url 'hotel_detail' i.id %}">
+            <button>Detalle de hotel</button>
+            </a>
+    </li>
+    <br>
+    {% endfor %}
+</ul>
+<ul>
+    {% for a in hotel_conexion %}
+    <li>
+        <h2>{{a.nombre}}</h2>
+    <br>
+    {% endfor %}
+</ul>
+{% endblock %}

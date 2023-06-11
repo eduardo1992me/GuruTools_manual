@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Dar de alta nuevo hotel</h1>   {# <--- 1: para nueva vista: Lo primero que se hace para crear una vista es dar de alta su archivo html para luego ir a views.py y ahí crear una función que lo mande llamar #}
+<form action= "/hotel/create/" method="POST">
+    {% csrf_token %}
+
+    {{form}}
+    {{error}}
+    <button>Guardar</button>
+
+</form> {# <-- Paso 4 y final para crear el form con información del modelo es crear el form con la ruta con un metodo POST y dentro el formulario con la notacion de jinja #}
+
+{% endblock %}
