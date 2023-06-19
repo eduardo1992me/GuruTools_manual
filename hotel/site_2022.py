@@ -4,6 +4,10 @@ from selenium.webdriver.chrome.options import Options
 import time
 import datetime
 from selenium.webdriver.support.ui import Select
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
 
 
 PATH = '/Users/eduardomedina/Documents/GuruTools_manual/hotel/chromedriver_mac_arm64/chromedriver'
@@ -51,7 +55,8 @@ search_button = driver.find_element("xpath",'//*[@id="searchengine"]/div/div[2]/
 search_button.click()
 time.sleep(10)
 
-room_list = driver.find_elements("xpath", '//*[@id="checkout"]/div/div[4]/div/div[2]/div[2]/a')
+# room_list = driver.find_elements("class name", 'sc-hKgILt kyVEWJ')
+room_list = WebDriverWait(driver, 10).until(EC.presence_of_all_elements_located((By.XPATH, '//*[@id="checkout"]/div/div[4]/div/div[2]/div[2]/a')))
 print(room_list)
 
 
@@ -70,8 +75,12 @@ with open("output1.html", "wb") as file:
 """
 
 # Basado en expedia_v2
-allRooms = soup.find("div",{"id":"checkout"})
-print(allRooms)
+allRooms = soup.find_all("p", class_='sc-hKgILt kyVEWJ')
+print(f"Las habitaciones con bf4 son: {allRooms}")
+
+
+
+"""
 Rooms = allRooms.find("a")
 
 for Room in Rooms:
@@ -82,4 +91,4 @@ for Room in Rooms:
         o["room-type"]=None
     l.append(o)
 
-print(l)
+print(l)"""
