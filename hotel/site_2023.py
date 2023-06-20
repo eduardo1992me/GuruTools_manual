@@ -14,8 +14,8 @@ target_url = "https://hotelcasasantamaria.mx"
 
 
 def monitoreoSitio_2023(main_url):
-    l=[]
-    g=[]
+    l=[]  #<-- Room
+    g=[]  #<-- price
     cycle = 0
     room_and_price_gen = {}
 
