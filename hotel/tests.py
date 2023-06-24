@@ -35,7 +35,7 @@ def url_convert(url, cycle):
                     old_chout = url_out[posicion+25:posicion+35]
                     url_out = url_out.replace(old_chkin, str(date_chkin))
                     url_out = url_out.replace(old_chout, str(date_chout))
-                    print(url_out)
+                    return url_out
             posicion += 1
            # print(f"Fecha en ciclo 0 es:: {date_chkin}")
         elif i == "?" and cycle == 1:
@@ -45,14 +45,12 @@ def url_convert(url, cycle):
             old_chout = ""
 
             for ch in url_out:
-                #print(ch, url_out[posicion], posicion)
-                #print(url_out[posicion+1:posicion+6])
                 if ch == "?" and url_out[posicion+1:posicion+6] == "chkin":
                     old_chkin = url_out[posicion+7:posicion+17]
                     old_chout = url_out[posicion+25:posicion+35]
                     url_out = url_out.replace(old_chkin, str(date_chkin))
                     url_out = url_out.replace(old_chout, str(date_chout))
-                    print(url_out)
+                    return url_out
             posicion += 1
         elif i == "?" and cycle == 2:
             date_chkin = date.today() + timedelta(days=30)
@@ -61,14 +59,12 @@ def url_convert(url, cycle):
             old_chout = ""
 
             for ch in url_out:
-                #print(ch, url_out[posicion], posicion)
-                #print(url_out[posicion+1:posicion+6])
                 if ch == "?" and url_out[posicion+1:posicion+6] == "chkin":
                     old_chkin = url_out[posicion+7:posicion+17]
                     old_chout = url_out[posicion+25:posicion+35]
                     url_out = url_out.replace(old_chkin, str(date_chkin))
                     url_out = url_out.replace(old_chout, str(date_chout))
-                    print(url_out)
+                    return url_out
             posicion += 1
         elif i == "?" and cycle == 3:
             date_chkin = date.today() + timedelta(days=90)
@@ -77,14 +73,12 @@ def url_convert(url, cycle):
             old_chout = ""
 
             for ch in url_out:
-                #print(ch, url_out[posicion], posicion)
-                #print(url_out[posicion+1:posicion+6])
                 if ch == "?" and url_out[posicion+1:posicion+6] == "chkin":
                     old_chkin = url_out[posicion+7:posicion+17]
                     old_chout = url_out[posicion+25:posicion+35]
                     url_out = url_out.replace(old_chkin, str(date_chkin))
                     url_out = url_out.replace(old_chout, str(date_chout))
-                    print(url_out)
+                    return url_out
             posicion += 1
     return url
 
@@ -96,8 +90,6 @@ old_chkin = ""
 old_chout = ""
 
 for ch in url_out:
-    #print(ch, url_out[posicion], posicion)
-    #print(url_out[posicion+1:posicion+6])
     if ch == "?" and url_out[posicion+1:posicion+6] == "chkin":
         old_chkin = url_out[posicion+7:posicion+17]
         old_chout = url_out[posicion+25:posicion+35]
