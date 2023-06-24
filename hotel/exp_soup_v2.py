@@ -19,7 +19,7 @@ options.add_argument('upgrade-insecure-requests=1')
 l = []
 o  = {}
 
-target_url= "https://www.expedia.com/Cansaulim-Hotels-Heritage-Village-Resort-Spa-Goa.h2185154.Hotel-Information?=one-key-onboarding-dialog&chkin=2023-10-13&chkout=2023-10-14&destType=MARKET&destination=Goa%2C%20India%20%28GOI-Dabolim%29&latLong=15.383019%2C73.838253&regionId=6028089&rm1=a2"
+target_url= "https://www.expedia.com/Aguascalientes-Hotels-Gran-Hotel-Alameda.h11910459.Hotel-Information?chkin=2023-10-13&chkout=2023-10-14&x_pwa=1&rfrr=HSR&pwa_ts=1687292049137&referrerUrl=aHR0cHM6Ly93d3cuZXhwZWRpYS5jb20vSG90ZWwtU2VhcmNo&useRewards=false&rm1=a2&regionId=315&destination=Aguascalientes%2C+Aguascalientes%2C+Mexico&destType=MARKET&selected=2150424&latLong=21.880852%2C-102.296016&sort=RECOMMENDED&top_dp=93&top_cur=USD&userIntent=&selectedRoomType=218763984&selectedRatePlan=278240039&searchId=5c79f714-5515-42d7-b3bd-de08eb3e1516"
 
 driver=webdriver.Chrome(PATH, options=options) # <--- Navegador oculto, podría causar errores(, chrome_options=options)
 driver.get(target_url)
