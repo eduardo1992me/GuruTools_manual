@@ -3,9 +3,8 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options # <--- Navegador oculto, podría causar errores
 import time
 from datetime import timedelta, date
+from models import Monitoreos, ControlMonitoreos
 
-# options = Options() # <--- Navegador oculto, podría causar errores
-# options.headless = True # <--- Navegador oculto, podría causar errores
 
 PATH = '/Users/eduardomedina/Documents/GuruTools_manual/hotel/chromedriver_mac_arm64/chromedriver'
 
@@ -15,6 +14,7 @@ options.add_argument('accept-encoding=gzip, deflate, br')
 options.add_argument('accept=text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7')
 options.add_argument('referer=https://www.expedia.com/')
 options.add_argument('upgrade-insecure-requests=1')
+options.headless = True # <--- Navegador oculto, podría causar errores
 
 
 l = []
@@ -125,6 +125,7 @@ def monotoreoExpedia(url):
     for cy in range(4):
         if cy == 0:
             driver=webdriver.Chrome(PATH, options=options) # <--- Navegador oculto, podría causar errores(, chrome_options=options)
+
             driver.get(target_url)
             time.sleep(5)
             resp = driver.page_source
@@ -173,7 +174,6 @@ def monotoreoExpedia(url):
         
         elif cy == 1:
             driver=webdriver.Chrome(PATH, options=options) # <--- Navegador oculto, podría causar errores(, chrome_options=options)
-            
             target_url = url_convert(url,cy)
             str(target_url)
             print(f"El contenido de target URl es: {target_url}")
@@ -321,6 +321,12 @@ def monotoreoExpedia(url):
 
 
 
+"""def guardarMonitoreoExp():
+    control = ControlMonitoreos()
+    control.save()
+    m = Monitoreos(id_monitoreo=control.id, fecha_chkin = "", canal = "", habitacion = "", precio = "")
+    m.save()
+"""
 
 
 

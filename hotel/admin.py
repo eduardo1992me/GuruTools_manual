@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Hotel, Conexion, Habitaciones, Canales
+from .models import Hotel, Conexion, Habitaciones, Canales, Monitoreos, ControlMonitoreos
 
 class HotelAdmin(admin.ModelAdmin):
  readonly_fields = () # <--- Aquí se crea la clase HotelAdmin donde se indican los datos que son de solo lectura en el Administrador de Django  "fecha_alta", 
@@ -9,4 +9,5 @@ admin.site.register(Hotel, HotelAdmin)  # <--- Y aquí se muestra ese campo en e
 admin.site.register(Conexion, HotelAdmin)
 admin.site.register(Canales, HotelAdmin)
 
-admin.site.register(Habitaciones, HotelAdmin)
+admin.site.register(Monitoreos, HotelAdmin)
+admin.site.register(ControlMonitoreos, HotelAdmin)
