@@ -9,7 +9,7 @@ import { API_URL } from "../constants";
 
 class Home extends Component {
     state = {
-        hotels: []
+        Hotels: []
     };
 
     componentDidMount() {
@@ -17,7 +17,7 @@ class Home extends Component {
     }
 
     getHotels = () => {
-        axios.get(API_URL).then(res => this.setState({ hotels: res.data }));
+        axios.get(API_URL).then(res => this.setState({ Hotels: res.data }));
     };
 
     resetState = () => {
@@ -30,7 +30,7 @@ class Home extends Component {
                 <Row>
                     <Col>
                     <HotelList
-                      hotels={this.state.hotels}
+                      Hotels={this.state.Hotels}
                       resetState={this.resetState}
                     />
                     </Col>
