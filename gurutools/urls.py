@@ -15,7 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, re_path
 from hotel import views
 
 urlpatterns = [
@@ -25,4 +25,6 @@ urlpatterns = [
     path('hotel/create/', views.create_hotel, name='create_hotel'), # <--- Para terminar con el alta de la vista se crea la nueva ruta
     path('hotel/<int:hotel_id>/', views.hotel_detail, name='hotel_detail'),
     path('hotel/conexion/<int:hotel_id>/', views.conexion, name='conexion'),
+    re_path(r'^api/hotel/$', views.hotel_list_a),
+    re_path(r'^api/hotel/([0-9])$', views.hotel_detail_a),
 ]

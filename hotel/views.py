@@ -4,6 +4,11 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse
 from .forms import HotelForm, ConexionForm, HabitacionesForm # <-- Paso 2 para formulario con la información del modelo usando el modulo forms.py(creado por nosotros) importarlo
 from .models import Hotel, Conexion, Habitaciones # <-- Luego importado para interactuar con la base de datos para poder listar los hoteles
+from rest_framework import viewsets, status
+from .serializers import HotelSerializer
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
+from .serializers import *
 
 
 # Create your views here.
@@ -67,4 +72,42 @@ def conexion(request, hotel_id):
         return redirect('hotel')
         
         # hotel = Hotel.objects.get(pk=hotel_id)
+
+
+"""class hotelView(viewsets.ModelsViewSet):
+    serealizer_class = HotelSerializer
+    queryset = Hotel.objects.all()"""
+
+@api_view(['GET', 'POST'])
+def hotel_list_a(request):
+    if request.method == 'GET':
+        data = Hotel.objects.all()
+
+        serializers = HotelSerializer(data, context={'request': request}, many=True)
+        return Response(serializers.data)
     
+    elif request.method == 'POST':
+        serializers = HotelSerializer(data=request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(status=status.HTTP_201_CREATED)
+
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['PUT', 'DELETE'])
+def hotel_detail_a(request, pk):
+    try:
+        hotel = Hotel.objects.get(pk=pk)
+    except Hotel.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'PUT':
+        serializers = HotelSerializer(Hotel, data=request.data, context={'request':request})
+        if serializers.is_valid():
+            serializers.save()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    elif request.method == 'DELETE':
+        hotel.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
