@@ -88,6 +88,7 @@ def hotel_list_a(request):
     
     elif request.method == 'POST':
         serializers = HotelSerializer(data=request.data)
+        print(f"Lo que tiene Serealizer es {serializers}")
         if serializers.is_valid():
             serializers.save()
             return Response(status=status.HTTP_201_CREATED)

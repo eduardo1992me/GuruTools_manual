@@ -26,7 +26,7 @@ class ConfirmRemovalModal extends Component {
   render() {
     return (
         <Fragment>
-        <Button color="danger" onClick={() => this.toggle()}>
+        <Button color="danger" onClick={() => this.toggle()} style={{marginTop: "10px"}}>
           Borrar
         </Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle}>

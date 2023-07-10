@@ -48,16 +48,22 @@ class Habitaciones(models.Model):
     
 class ControlMonitoreos(models.Model):
     fecha_ejecucion = models.DateTimeField(auto_now_add=True)
+    id_hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE)
+    # id_usuario = 
+    fecha_monitoreo = models.DateField(auto_now_add=True)
+    hora_monitoreo = models.TimeField(auto_now_add=True)
 
     def __str__(self):
         return self.fecha_ejecucion
 
 class Monitoreos(models.Model):
-    id_monitoreo = models.ForeignKey(ControlMonitoreos, on_delete=models.CASCADE)
+    id_monitoreo_p = models.ForeignKey(ControlMonitoreos, on_delete=models.CASCADE)
     fecha_chkin = models.DateField()
     canal = models.CharField(max_length=30)
+    moneda = models.CharField(max_length=5)
+    rango = models.CharField(max_length=5)
+    tarifa = models.FloatField()
     habitacion = models.TextField()
-    precio = models.TextField()
 
     def __str__(self):
         return self.fecha_chkin

@@ -26,7 +26,7 @@ class Home extends Component {
 
     render() {
         return (
-            <Container>
+            <Container style={{ marginTop: "20px" }}>
                 <Row>
                     <Col>
                     <HotelList

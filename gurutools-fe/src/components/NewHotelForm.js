@@ -14,14 +14,14 @@ class NewHotelForm extends React.Component {
         estado: "",
         direccion: "",
         fecha_alta: "",
-        activo: "",
+        activo: "1",
         id_usuario_id: ""
     };
 
     componentDidMount() {
         if (this.props.hotel) {
-            const {pk, nombre, categoria, pais, estado, direccion, fecha_alta, activo, id_usuario_id} = this.props.hotel;
-            this.setState({pk, nombre, categoria, pais, estado, direccion, fecha_alta, activo, id_usuario_id});
+            const {pk, nombre, categoria, pais, estado, direccion, fecha_alta, activo, test, id_usuario_id} = this.props.hotel;
+            this.setState({pk, nombre, categoria, pais, estado, direccion, fecha_alta, activo, test, id_usuario_id});
         }
     }
 
@@ -40,6 +40,10 @@ class NewHotelForm extends React.Component {
     defaultIfEmpty = value => {
         return value === "" ? "" : value;
     };
+
+    setStatus(event) {
+        console.log(event.target.value);
+      }
 
     render() {
         return (
@@ -90,7 +94,7 @@ class NewHotelForm extends React.Component {
                     />
                 </FormGroup>
                 <FormGroup>
-                    <label for="fecha_alta">Fecha_alta:</label>
+                    <label for="fecha_alta">Fecha de alta:</label>
                     <Input
                         type="text"
                         name="fecha_alta"
@@ -98,17 +102,25 @@ class NewHotelForm extends React.Component {
                         value={this.defaultIfEmpty(this.state.fecha_alta)}
                     />
                 </FormGroup>
+
+            <label for="activo">Habilitado:</label>
+
+             <div onChange={this.setStatus}>
+                <input type="radio" value="1" name="activo" defaultChecked/> Activo
+                <br />
+                <input type="radio" value="0" name="activo" /> Inactivo
+                </div>
+                <br />
+
                 <FormGroup>
-                    <label for="activo">Activo:</label>
-                    <Input
-                        type="text"
-                        name="activo"
-                        onChange={this.onChange}
-                        value={this.defaultIfEmpty(this.state.activo)}
-                    />
+                <label for="activo">
+                {this.state.activo === "1" ? "Activo" : "Inactivo"}
+                </label>
                 </FormGroup>
+                
+  
                 <FormGroup>
-                    <label for="id_usuario_id">Id_usuario_id:</label>
+                    <label for="id_usuario_id">Id de Usuario:</label>
                     <Input
                         type="text"
                         name="id_usuario_id"
@@ -116,7 +128,8 @@ class NewHotelForm extends React.Component {
                         value={this.defaultIfEmpty(this.state.id_usuario_id)}
                     />
                 </FormGroup>
-                <Button>Enviar</Button>
+
+                <Button>Guardar</Button>
             </Form>
 
         );

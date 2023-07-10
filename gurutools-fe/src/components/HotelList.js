@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Table } from "reactstrap";
 import NewHotelModal from "./NewHotelModal";
 
-import ConfirmRemovalModal from "./NewHotelModal";
+import ConfirmRemovalModal from "./ConfirmRemovalModal";
 
 class HotelList extends Component {
     render () {
@@ -15,10 +15,11 @@ class HotelList extends Component {
             <th>Categoria</th>
             <th>País</th>
             <th>Estado</th>
-            <th>Direccion</th>
-            <th>Fecha_alta</th>
+            <th>Dirección</th>
+            <th>Fecha de alta</th>
             <th>Activo</th>
-            <th>Id_usuario_id</th>
+            <th>Id usuario</th>
+            <th>Acciones</th>
             <th></th>
           </tr>
         </thead>
@@ -31,26 +32,31 @@ class HotelList extends Component {
             </tr>
           ) : (
             Hotels.map(hotel => (
+              
               <tr key={hotel.pk}>
+                
                 <td>{hotel.nombre}</td>
                 <td>{hotel.categoria}</td>
                 <td>{hotel.pais}</td>
                 <td>{hotel.estado}</td>
                 <td>{hotel.direccion}</td>
                 <td>{hotel.fecha_alta}</td>
-                <td>{hotel.activo}</td>
+                <td>{hotel.activo.toString()}</td>
+                
                 <td>{hotel.id_usuario_id}</td>
                 <td align="center">
-                  <NewHotelModal
+                <NewHotelModal
                     create={false}
                     hotel={hotel}
                     resetState={this.props.resetState}
                   />
-                  &nbsp;&nbsp;
+
+
                   <ConfirmRemovalModal
                     pk={hotel.pk}
                     resetState={this.props.resetState}
                   />
+                  
                 </td>
               </tr>
             ))

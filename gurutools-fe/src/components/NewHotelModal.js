@@ -26,9 +26,10 @@ class NewHotelModal extends Component {
                     color="primary"
                     className="float-right"
                     onClick={this.toggle}
-                    style={{ minWidth: "200px" }}
+                    style={{ minWidth: "200px"}}
+                    
                 >
-                    Create New 
+                    Crear nuevo hotel 
                 </Button>
 
             );
@@ -42,7 +43,7 @@ class NewHotelModal extends Component {
                         <NewHotelForm
                         resetState={this.props.resetState}
                         toggle={this.toggle}
-                        student={this.props.student}
+                        hotel={this.props.hotel}
                         />
                     </ModalBody>
                 </Modal>
