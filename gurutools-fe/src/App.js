@@ -2,14 +2,16 @@ import './App.css';
 import React, { Component, Fragment } from "react";
 import Header from './components/Header';
 import Home from './components/Home';
-import LoginForm from "./components/Login"
+import LoginForm from "./components/Login";
+import HotelDetail from "./components/HotelDetail"
 
 
 class App extends Component {
   render() {
     return (
       <Fragment>
-        <LoginForm/>
+      <HotelDetail/>
+        
 
       </Fragment>
     );

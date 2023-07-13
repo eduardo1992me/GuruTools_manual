@@ -3,7 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options # <--- Navegador oculto, podría causar errores
 import time
 from datetime import timedelta, date
-from models import Monitoreos, ControlMonitoreos
+#from models import Monitoreos, ControlMonitoreos
 
 
 PATH = '/Users/eduardomedina/Documents/GuruTools_manual/hotel/chromedriver_mac_arm64/chromedriver'

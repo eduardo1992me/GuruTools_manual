@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 from datetime import timedelta, date
 
 
-class monitoreo_booking:
+class Monitoreo_booking:
     def __init__(self, url, cycle):
         self.url = url
         self.cycle = cycle

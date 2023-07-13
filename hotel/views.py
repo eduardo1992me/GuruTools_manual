@@ -9,6 +9,7 @@ from .serializers import HotelSerializer
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from .serializers import *
+from .gestor_monitoreo import *
 
 
 # Create your views here.
@@ -112,3 +113,12 @@ def hotel_detail_a(request, pk):
     elif request.method == 'DELETE':
         hotel.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+    
+@api_view(['GET', 'POST'])
+def hotel_full_a(request):
+    
+    if request.method == 'POST':
+        peticion_monitoreo = Monitoreo_Clase.monitoreo_general()
+        
+
+        return Response(status=status.HTTP_202_ACCEPTED)

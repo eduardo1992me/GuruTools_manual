@@ -27,4 +27,5 @@ urlpatterns = [
     path('hotel/conexion/<int:hotel_id>/', views.conexion, name='conexion'),
     re_path(r'^api/hotel/$', views.hotel_list_a),
     re_path(r'^api/hotel/([0-9])$', views.hotel_detail_a),
+    re_path(r'^api/hotel/h_full/$', views.hotel_full_a), 
 ]
