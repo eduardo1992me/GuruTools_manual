@@ -45,6 +45,7 @@ class HotelList extends Component {
                 
                 <td>{hotel.id_usuario_id}</td>
                 <td align="center">
+                  
                 <NewHotelModal
                     create={false}
                     hotel={hotel}

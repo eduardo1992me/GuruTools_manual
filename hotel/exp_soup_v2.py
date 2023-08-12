@@ -9,7 +9,7 @@ from datetime import timedelta, date
 PATH = '/Users/eduardomedina/Documents/GuruTools_manual/hotel/chromedriver_mac_arm64/chromedriver'
 
 options = webdriver.ChromeOptions()
-options.add_argument('user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36')
+options.add_argument('user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36')
 options.add_argument('accept-encoding=gzip, deflate, br')
 options.add_argument('accept=text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7')
 options.add_argument('referer=https://www.expedia.com/')
@@ -78,9 +78,20 @@ class Monitoreo_expedia:
                 driver.close()
 
                 soup = BeautifulSoup(resp, 'lxml')
-                allRooms = soup.find("div",{"data-stid":"section-room-list"})
-                Rooms = allRooms.find_all("div", {"class":"uitk-layout-grid-item"})
-    
+                try:
+                    allRooms = soup.find("div",{"data-stid":"section-room-list"})
+                    Rooms = allRooms.find_all("div", {"class":"uitk-layout-grid-item"})
+                except:
+                    try:
+                        driver.get(target_url_a)
+                        time.sleep(5)
+                        resp = driver.page_source
+                        driver.close()
+                        soup = BeautifulSoup(resp, 'lxml')
+                        allRooms = soup.find("div",{"data-stid":"section-room-list"})
+                        Rooms = allRooms.find_all("div", {"class":"uitk-layout-grid-item"})
+                    except:
+                        pass
 
                 date_chkin = date.today() + timedelta(days=1)
                 date_chkout = date.today() + timedelta(days=2)
@@ -141,8 +152,20 @@ class Monitoreo_expedia:
                 driver.close()
 
                 soup = BeautifulSoup(resp, 'lxml')
-                allRooms = soup.find("div",{"data-stid":"section-room-list"})
-                Rooms = allRooms.find_all("div", {"class":"uitk-layout-grid-item"})
+                try:
+                    allRooms = soup.find("div",{"data-stid":"section-room-list"})
+                    Rooms = allRooms.find_all("div", {"class":"uitk-layout-grid-item"})
+                except:
+                    try:
+                        driver.get(target_url_a)
+                        time.sleep(5)
+                        resp = driver.page_source
+                        driver.close()
+                        soup = BeautifulSoup(resp, 'lxml')
+                        allRooms = soup.find("div",{"data-stid":"section-room-list"})
+                        Rooms = allRooms.find_all("div", {"class":"uitk-layout-grid-item"})
+                    except:
+                        pass
 
 
                 date_chkin = date.today() + timedelta(days=7)
@@ -202,9 +225,20 @@ class Monitoreo_expedia:
                 driver.close()
 
                 soup = BeautifulSoup(resp, 'lxml')
-                allRooms = soup.find("div",{"data-stid":"section-room-list"})
-                Rooms = allRooms.find_all("div", {"class":"uitk-layout-grid-item"})
-
+                try:
+                    allRooms = soup.find("div",{"data-stid":"section-room-list"})
+                    Rooms = allRooms.find_all("div", {"class":"uitk-layout-grid-item"})
+                except:
+                    try:
+                        driver.get(target_url_a)
+                        time.sleep(5)
+                        resp = driver.page_source
+                        driver.close()
+                        soup = BeautifulSoup(resp, 'lxml')
+                        allRooms = soup.find("div",{"data-stid":"section-room-list"})
+                        Rooms = allRooms.find_all("div", {"class":"uitk-layout-grid-item"})
+                    except:
+                        pass
 
                 date_chkin = date.today() + timedelta(days=30)
                 date_chkout = date.today() + timedelta(days=31)
@@ -267,9 +301,20 @@ class Monitoreo_expedia:
                 driver.close()
 
                 soup = BeautifulSoup(resp, 'lxml')
-                allRooms = soup.find("div",{"data-stid":"section-room-list"})
-                Rooms = allRooms.find_all("div", {"class":"uitk-layout-grid-item"})
-
+                try:
+                    allRooms = soup.find("div",{"data-stid":"section-room-list"})
+                    Rooms = allRooms.find_all("div", {"class":"uitk-layout-grid-item"})
+                except:
+                    try:
+                        driver.get(target_url_a)
+                        time.sleep(5)
+                        resp = driver.page_source
+                        driver.close()
+                        soup = BeautifulSoup(resp, 'lxml')
+                        allRooms = soup.find("div",{"data-stid":"section-room-list"})
+                        Rooms = allRooms.find_all("div", {"class":"uitk-layout-grid-item"})
+                    except:
+                        pass
 
                 date_chkin = date.today() + timedelta(days=90)
                 date_chkout = date.today() + timedelta(days=91)

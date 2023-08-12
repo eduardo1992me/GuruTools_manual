@@ -67,4 +67,11 @@ class Monitoreos(models.Model):
 
     def __str__(self):
         return self.id_monitoreo_p
+    
+class TipoDeCambio(models.Model):
+    fecha_hora_t_cambio = models.DateTimeField()
+    tipo_cambio = models.FloatField()
+
+    def __str__(self):
+        return self.pk
 

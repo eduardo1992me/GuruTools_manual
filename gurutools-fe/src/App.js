@@ -1,26 +1,29 @@
-import './App.css';
+import "./App.css";
 import React, { Component, Fragment } from "react";
-import Header from './components/Header';
-import Home from './components/Home';
+import Header from "./components/Header";
+import Home from "./components/Home";
 import LoginForm from "./components/Login";
-import HotelDetail from "./components/HotelDetail"
-
+import MonitoringButton from "./components/HotelDetail";
+import AltaHotel from "./components/AltaHotel";
+import AltaHotelRelacion from "./components/AltaHotelRelacion";
+import CalendarT from "./components/CalendarT";
+import MonitoringDetail from "./components/MonitoringDetailGroup/MonitoringDetail";
 
 class App extends Component {
   render() {
     return (
       <Fragment>
-      <HotelDetail/>
-        
+        <Header />
+        <Home />
+        <AltaHotel/>
+        <AltaHotelRelacion/>
 
+        <MonitoringDetail />
+       
       </Fragment>
     );
   }
 }
-
-
-
-
 
 //function App() {
 //  return (
