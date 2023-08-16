@@ -31,8 +31,10 @@ class Canales(models.Model):
 class Conexion(models.Model):
     id_hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE)
     id_usuario = models.ForeignKey(User, on_delete=models.CASCADE)
-    id_canal = models.ForeignKey(Canales, on_delete=models.CASCADE)
+    # id_canal = models.ForeignKey(Canales, on_delete=models.CASCADE) <-- Se quita por ahora debido a que aquí se relacionaran todos los canales y no solo uno
     url_canal = models.TextField(blank=False)
+    url_canal_exp = models.TextField(blank=True, default="NA")
+    url_canal_bbk = models.TextField(blank=True, default="NA")
     fecha_alta = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -44,7 +46,24 @@ class Habitaciones(models.Model):
     nombre = models.CharField(max_length=30)
 
     def __str__(self):
-        return self.nombre
+        return self.pk
+    
+class HabitacionesHijas(models.Model):
+    id_conexion = models.ForeignKey(Conexion, on_delete=models.CASCADE)
+    id_canal = models.ForeignKey(Canales, on_delete=models.CASCADE)
+    id_habitacion_p = models.ForeignKey(Habitaciones, on_delete=models.CASCADE)
+    nombre = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.pk
+
+class AjustePreciosCanales(models.Model):
+    id_conexion = models.ForeignKey(Conexion, on_delete=models.CASCADE)
+    ajuste_exp = models.FloatField()
+    ajuste_bbk = models.FloatField()
+
+    def __str__(self):
+        return self.pk
     
 class ControlMonitoreos(models.Model):
     fecha_ejecucion = models.DateTimeField(auto_now_add=True)
@@ -67,6 +86,13 @@ class Monitoreos(models.Model):
 
     def __str__(self):
         return self.id_monitoreo_p
+    
+class Incidencias(models.Model):
+    id_monitoreo = models.ForeignKey(Monitoreos, on_delete=models.CASCADE)
+    incidencia = models.BooleanField()
+
+    def __str__(self):
+        return self.pk
     
 class TipoDeCambio(models.Model):
     fecha_hora_t_cambio = models.DateTimeField()
