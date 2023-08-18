@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 class Hotel(models.Model):
 #    id_hotel  <--- Al parecer al mandarlo crear así en automatico agregara un ID... esta por verse...
-    id_usuario = models.ForeignKey(User, on_delete=models.CASCADE)  # <---- Esto hace refefrencia a la tabla User que viene de default con la creación de Django y en caso de que el usuario sea borrado se borraran sus hoteles relacionados
+    #id_usuario = models.ForeignKey(User, on_delete=models.CASCADE)  # <---- Esto hace refefrencia a la tabla User que viene de default con la creación de Django y en caso de que el usuario sea borrado se borraran sus hoteles relacionados
     nombre = models.CharField(max_length=40)
     categoria = models.CharField(max_length=30)
     activo = models.BooleanField(default=True)
@@ -13,6 +13,9 @@ class Hotel(models.Model):
     estado = models.CharField(max_length=40)
     direccion = models.TextField(blank=True)
     fecha_alta = models.DateTimeField(auto_now_add=True) # Esta prpoiedad del final es para que se rellene en automatico la fecha y hora
+    url_canal = models.TextField(blank=False)
+    url_canal_exp = models.TextField(blank=True, default="NA")
+    url_canal_bbk = models.TextField(blank=True, default="NA")
 
 
     def __str__(self):  # <--- Esto srive para que en el administrador nativo de django en la lista de hoteles muestre el nombre y si esta activo o no
@@ -41,7 +44,7 @@ class Conexion(models.Model):
         return str(self.id_hotel) + ' -Canal: ' + str(self.id_canal)
 
 class Habitaciones(models.Model):
-    id_conexion = models.ForeignKey(Conexion, on_delete=models.CASCADE)
+    id_hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE)
     id_canal = models.ForeignKey(Canales, on_delete=models.CASCADE)
     nombre = models.CharField(max_length=30)
 
@@ -49,7 +52,7 @@ class Habitaciones(models.Model):
         return self.pk
     
 class HabitacionesHijas(models.Model):
-    id_conexion = models.ForeignKey(Conexion, on_delete=models.CASCADE)
+    id_hotel = models.ForeignKey(Conexion, on_delete=models.CASCADE)
     id_canal = models.ForeignKey(Canales, on_delete=models.CASCADE)
     id_habitacion_p = models.ForeignKey(Habitaciones, on_delete=models.CASCADE)
     nombre = models.CharField(max_length=30)
@@ -101,3 +104,10 @@ class TipoDeCambio(models.Model):
     def __str__(self):
         return self.pk
 
+class TestInsert_1(models.Model):
+    nombre_usuario_test = models.CharField(max_length=30)
+    categoria_test = models.CharField(max_length=30)
+    edad_test = models.IntegerField()
+
+    def __str__(self):
+        return self.pk

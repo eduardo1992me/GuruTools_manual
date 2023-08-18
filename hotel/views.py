@@ -10,7 +10,8 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from .serializers import *
 from .gestor_monitoreo import *
-
+from .Test_Registro import *
+from .hotelRegister import *
 
 # Create your views here.
 def home(request):
@@ -122,3 +123,45 @@ def hotel_full_a(request):
         
 
         return Response(status=status.HTTP_202_ACCEPTED)
+    
+
+@api_view(['GET', 'POST'])
+def registro_test(request):
+    if request.method == 'POST':
+        data=request.data
+        clean_data = []
+        for i in data:
+            clean_data.append(data[i])
+        print(clean_data)
+
+        nombre = clean_data[1]
+        categoria = clean_data[2]
+        edad = clean_data[3]
+        peticion_registro = Registro_Test1.guardarEnDB(nombre, categoria, edad)
+
+        return Response(status=status.HTTP_201_CREATED)
+
+
+@api_view(['GET', 'POST'])
+def registro_gen_1(request):
+    if request.method == 'POST':
+        data=request.data
+        clean_data = []
+        for i in data:
+            clean_data.append(data[i])
+        print(clean_data)
+
+        name = clean_data[1]
+        category = clean_data[2]
+        country = clean_data[3]
+        state = clean_data[4]
+        address = clean_data[5]
+        url = clean_data[6]
+        url_exp = clean_data[7]
+        url_bbk = clean_data[8]
+
+        peticion_registro = HotelRegister.save_general_register_1(name, category, country, state, address, url, url_exp ,url_bbk)
+        new_hotel_id = str(peticion_registro)
+        resonse_data = {'id': new_hotel_id}
+        print(f"En view devuelve: {resonse_data}")
+        return Response(resonse_data, status=status.HTTP_201_CREATED)

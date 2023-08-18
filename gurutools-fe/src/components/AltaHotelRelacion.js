@@ -16,7 +16,7 @@ import {
 import { DatePicker } from "@guruhotel/aura-ui";
 import CalendarT from "./CalendarT";
 
-function AltaHotelRelacion(args) {
+function AltaHotelRelacion(props) {
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
 
@@ -30,6 +30,7 @@ function AltaHotelRelacion(args) {
     >
       <h1>Maglen Resort</h1>
       <br></br>
+      <h3>El ID del hotel es: {props.data}</h3>
       <h4>Relación de habitaciones</h4>
       <Table bordered hover responsive size="" striped>
         <thead>
@@ -169,7 +170,7 @@ function AltaHotelRelacion(args) {
       >
         Ajustar valores
       </Button>
-      <Modal isOpen={modal} toggle={toggle} {...args}>
+      <Modal isOpen={modal} toggle={toggle} {...props}>
         <ModalHeader toggle={toggle}>Actualizar URL´s</ModalHeader>
         <ModalBody>
           <FormGroup row>

@@ -18,6 +18,7 @@ class NewHotelModal extends Component {
 
         var title = "Editando Hotel";
         var button = <Button onClick={this.toggle}>Editar</Button>;
+        
         if (create) {
             title = "Creando nuevo Hotel";
 

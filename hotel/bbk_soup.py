@@ -320,6 +320,70 @@ class Monitoreo_booking:
                 room_and_price = {}
         
         return rooms_and_price_gen
+    
+
+    def monitoreo_bbk_hab(self):
+        k={} #<-- room
+        rooms_and_price_gen = {}
+        room_list = []
+
+
+    
+        date_chkin = date.today() + timedelta(days=30)
+        posicion = 0
+
+        for i in self.url:
+            if i == "?":
+                date_chkin = date.today() + timedelta(days=30)
+                date_chkout = date.today() + timedelta(days=31)
+                target_url = self.url[0:posicion] + f"?checkin={date_chkin}&checkout={date_chkout}&group_adults=2&group_children=0&no_rooms=1&selected_currency=MXN"
+            posicion += 1
+
+        headers={"User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36"}
+        resp = requests.get(target_url, headers=headers)
+        soup = BeautifulSoup(resp.text, 'lxml')
+        ids = []
+
+        try:
+            tr = soup.find_all("tr")
+        except:
+            tr = None
+
+        for y in range(0,len(tr)):
+            try:
+                id = tr[y].get('data-block-id')
+            except:
+                id = None
+
+            if id is not None:
+                ids.append(id)
+
+        for m in range(0,len(ids)):
+            try:
+                allData = soup.find("tr",{"data-block-id":ids[m]})
+                try:
+                    rooms = allData.find("span",{"class":"hprt-roomtype-icon-link"})
+                except:
+                    rooms=None
+
+                if rooms is None:
+                    last_room = rooms.text.replace("\n","")
+                try:
+                    k = rooms.text.replace("\n","")
+                    room_list.append(k)
+                #     print(f"Esto contiene la variable room list {room_list} en el ciclo {m}")
+                except:
+                    k = last_room
+                    room_list.append(k)
+
+            except:
+                k = None
+                k = None
+        
+        return room_list
+
+
+
 
     @classmethod
     def url_convert(cls, url):
@@ -345,6 +409,10 @@ class Monitoreo_booking:
                 url = url[0:posicion] + f"?checkin={date_chkin}&checkout={date_chkout}&group_adults=2&group_children=0&no_rooms=1&selected_currency=MXN"
             posicion += 1
         return url
+    
+
+
+
 
 """url = "https://www.booking.com/hotel/mx/francia-aguascalientes.es.html?checkin=2023-12-28&checkout=2023-12-29&group_adults=2&group_children=0&no_rooms=1&selected_currency=MXN"
 cycle = 0

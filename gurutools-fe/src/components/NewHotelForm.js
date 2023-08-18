@@ -118,16 +118,6 @@ class NewHotelForm extends React.Component {
                 </label>
                 </FormGroup>
                 
-  
-                <FormGroup>
-                    <label for="id_usuario_id">Id de Usuario:</label>
-                    <Input
-                        type="text"
-                        name="id_usuario_id"
-                        onChange={this.onChange}
-                        value={this.defaultIfEmpty(this.state.id_usuario_id)}
-                    />
-                </FormGroup>
 
                 <Button>Guardar</Button>
             </Form>

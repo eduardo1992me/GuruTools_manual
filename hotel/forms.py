@@ -7,9 +7,9 @@ from django.utils.translation import gettext_lazy as _
 class HotelForm(ModelForm): # <-- Paso 1: crear esta clase con los campos que se van a requerir para luego ir a view a implementarlo en la vista(views.py)
     class Meta:
         model = Hotel
-        fields = ['nombre', 'categoria', 'id_usuario', 'activo', 'pais', 'estado', 'direccion']
+        fields = ['nombre', 'categoria', 'activo', 'pais', 'estado', 'direccion']
         labels = {
-            "nombre": _("Nombre del Hotel"), "id_usuario": _("Account Manager"), "activo": _("Estatus del hotel(Activo/Inactivo)")}
+            "nombre": _("Nombre del Hotel"), "activo": _("Estatus del hotel(Activo/Inactivo)")}
         model2 = Conexion
         fields2 = ['url_canal']
         model3 = Habitaciones

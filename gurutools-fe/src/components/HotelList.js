@@ -18,7 +18,6 @@ class HotelList extends Component {
             <th>Dirección</th>
             <th>Fecha de alta</th>
             <th>Activo</th>
-            <th>Id usuario</th>
             <th>Acciones</th>
             <th></th>
           </tr>
@@ -43,7 +42,6 @@ class HotelList extends Component {
                 <td>{hotel.fecha_alta}</td>
                 <td>{hotel.activo.toString()}</td>
                 
-                <td>{hotel.id_usuario_id}</td>
                 <td align="center">
                   
                 <NewHotelModal

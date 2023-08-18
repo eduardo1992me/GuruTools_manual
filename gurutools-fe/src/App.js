@@ -8,17 +8,15 @@ import AltaHotel from "./components/AltaHotel";
 import AltaHotelRelacion from "./components/AltaHotelRelacion";
 import CalendarT from "./components/CalendarT";
 import MonitoringDetail from "./components/MonitoringDetailGroup/MonitoringDetail";
+import TestInsert from './components/TestInsert';
+import Info_transfer_origin from "./components/Info_transfer_origin";
 
 class App extends Component {
   render() {
     return (
       <Fragment>
-        <Header />
-        <Home />
-        <AltaHotel/>
-        <AltaHotelRelacion/>
-
-        <MonitoringDetail />
+       <Header />
+      <AltaHotel />
        
       </Fragment>
     );
